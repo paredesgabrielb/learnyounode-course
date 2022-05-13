@@ -6,12 +6,9 @@ const ext = process.argv[3];
 fs.readdir(path, (err, list) => {
     if(err) return console.log(err)
 
-    list.map((val,index)=>{
-        if(val.endsWith(ext)){
-            console.log(val);
+    list.map((file,index)=>{
+        if(file.split('.')[1] === ext){
+            console.log(file);
         }
-
-
     })
-
 });

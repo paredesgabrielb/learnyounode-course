@@ -23,7 +23,8 @@ function httpGet(url,position){
         response.on('end', () => {
             queue[position] = {
                 url: url,
-                data: dataItem};
+                data: dataItem
+            };
 
             count++;
             if(count === 3 ){

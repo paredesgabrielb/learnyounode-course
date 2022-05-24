@@ -17,25 +17,17 @@ const unixtime = (isoTime) => {
 
 
 const routes = {
-    '/api/parsetime': (parsedUrl) => {
-        const isoDate = new Date(parsedUrl.searchParams.get('iso'));
-        return parsetime(isoDate);
-    },
-    '/api/unixtime': (parsedUrl) => {
-        const isoDate = new Date(parsedUrl.searchParams.get('iso'));
-        return unixtime(isoDate);
-    }
+    '/api/parsetime': parsetime,
+    '/api/unixtime':  unixtime
 }
 
-
-
 const server = http.createServer(function(req, res){
-    const urlRoute = new URL(req.url,`http:\\localhost:${port}`);
-    const route = routes[urlRoute.pathname];
+    const url = new URL(req.url,`http:\\localhost:${port}`);
+    const route = routes[url.pathname];
+    const isoDate = new Date(parsedUrl.searchParams.get('iso'));
 
     res.writeHead(200, {'Content-Type':'application/json'});
-    res.end(JSON.stringify(route(urlRoute)));
-
+    res.end(JSON.stringify(route(isoDate)));
 });
 
 server.listen(port, () => console.log("Server is running..."));
